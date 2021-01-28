@@ -10,7 +10,7 @@ chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
 browser = webbrowser.get('chrome')
 
-print("~~~~~~~~~~\nSTATUS CODE: " + str(site.status_code) + "\n~~~~~~~~~~")
+print("~~~~~~~~~~\nHTTP STATUS CODE: " + str(site.status_code) + "\n~~~~~~~~~~")
 
 src = site.content
 
