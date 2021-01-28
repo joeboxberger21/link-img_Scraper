@@ -5,6 +5,7 @@ import webbrowser
 url = input("URL: ")
 site = requests.get(url)
 
+#Change path based on chrome.exe file
 chrome_path="C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
 webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
 browser = webbrowser.get('chrome')
@@ -20,15 +21,21 @@ imgs = soup.find_all("img")
 
 print("~~~~~~~~~~Links~~~~~~~~~~")
 for link in links:
-    print(link.attrs['href'])
+    try:
+    	print(link.attrs['href'])
+    except:
+    	print("An Error Occurred")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 print("\n~~~~~~~~~~Images~~~~~~~~~~")
 for img in imgs:
-	if(str(img.attrs['src'])[0:4] == "http"):
-		image = str(img.attrs['src'])
-	else:
-		image = url + str(img.attrs['src'])
-	print(image)
-	browser.open_new_tab(image)
+	try:
+		if(str(img.attrs['src'])[0:4] == "http"):
+			image = str(img.attrs['src'])
+		else:
+			image = url + str(img.attrs['src'])
+		print(image)
+		browser.open_new_tab(image)
+	except:
+		print("An Error Occurred")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
